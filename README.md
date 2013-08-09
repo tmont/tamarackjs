@@ -53,7 +53,50 @@ RewriteProfanity.prototype = {
 ```
 
 ### Asynchronous Pipelines
-Coming soon! Probably!
+Two things to do when handling asynchronous filters and pipelines:
+
+1. Add an `execute(input, next, callback)` function to your filter
+2. Call `execute(input, null, callback)` on the pipeline
+
+For example, here's an asynchronous filter:
+
+```javascript
+function AppendWord(word) {
+	this.word = word;
+}
+AppendWord.prototype = {
+	execute: function(input, next, callback) {
+		input += this.word;
+		next(input, callback);
+	}
+};
+```
+
+And then how you use it in a pipeline:
+```javascript
+new Pipeline()
+	.add(new AppendWord(' world'))
+	.andFinally(function(input, callback) {
+		callback(input + '!');
+	})
+	.execute('Hello', function(result) {
+		console.log(result); //"Hello world!"
+	});
+```
+
+If you want to modify the __output__ using an asynchronous filter,
+`AppendWord.prototype.execute` would become:
+
+```javascript
+function(input, next, callback) {
+	next(input, function(result) {
+		result += this.word;
+		callback(result);
+	});
+}
+```
+
+The result after executing the pipeline as above would be `Hello !world`.
 
 ## Development
 ```bash
