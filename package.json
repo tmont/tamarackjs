@@ -1,6 +1,6 @@
 {
 	"name": "tamarack",
-	"version": "0.0.2",
+	"version": "0.1.0+1.0.0",
 	"description": "Micro framework for working with the chain of responsibility pattern. Port of the Tamarack .NET library.",
 	"keywords": [ "chain", "responsibility", "pipeline", "filter" ],
 	"directories": {
