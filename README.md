@@ -42,10 +42,14 @@ function createNewPost(post) {
 Here's what one of these filters might look like:
 
 ```javascript
-function RewriteProfanity(input, next) {
-	input = input.replace(/ur mom sux/gi, 'Let\'s agree to disagree.');
-	return next(input);
-}
+function RewriteProfanity() {}
+
+RewriteProfanity.prototype = {
+	executeSync: function(input, next) {
+		input = input.replace(/ur mom sux/gi, 'Let\'s agree to disagree.');
+		return next(input);
+	}
+};
 ```
 
 ### Asynchronous Pipelines
