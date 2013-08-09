@@ -1,0 +1,29 @@
+{
+	"name": "tamarack",
+	"version": "0.0.1",
+	"description": "Micro framework for working with the chain of responsibility pattern. Port of the Tamarack .NET library.",
+	"keywords": [ "chain", "responsibility", "pipeline", "filter" ],
+	"directories": {
+		"lib": "src"
+	},
+
+	"files": [
+		"src",
+		"index.js"
+	],
+
+	"author": "Tommy Montgomery <tmont@tmont.com> (http://tmont.com/)",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tmont/tamarackjs.git"
+	},
+
+	"devDependencies": {
+		"mocha": "1.12.0",
+		"should": "1.2.2"
+	},
+
+	"scripts": {
+		"test": "./node_modules/.bin/mocha -R spec tests"
+	}
+}
