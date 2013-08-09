@@ -1,6 +1,6 @@
 # Tamarack(.js)
 [![Build Status](https://travis-ci.org/tmont/tamarackjs.png)](https://travis-ci.org/tmont/tamarackjs)
-[![NPM version](https://badge.fury.io/js/tamarackjs.png)](http://badge.fury.io/js/tamarackjs)
+[![NPM version](https://badge.fury.io/js/tamarack.png)](http://badge.fury.io/js/tamarack)
 
 This is a NodeJS port of the similarly named [.NET framework](https://github.com/mikevalenty/tamarack),
 written by Mike Valenty. The documentation on that page is more verbose than the stuff on this
