@@ -79,7 +79,7 @@ new Pipeline()
 	.andFinally(function(input, callback) {
 		callback(input + '!');
 	})
-	.execute('Hello', function(result) {
+	.execute('Hello', null, function(result) {
 		console.log(result); //"Hello world!"
 	});
 ```
