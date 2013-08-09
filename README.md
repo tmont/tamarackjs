@@ -89,8 +89,9 @@ If you want to modify the __output__ using an asynchronous filter,
 
 ```javascript
 function(input, next, callback) {
+	var self = this;
 	next(input, function(result) {
-		result += this.word;
+		result += self.word;
 		callback(result);
 	});
 }
