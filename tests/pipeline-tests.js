@@ -1,6 +1,5 @@
 var should = require('should'),
-	tamarack = require('../'),
-	Pipeline = tamarack.Pipeline;
+	Pipeline = require('../');
 
 describe('Pipeline', function() {
 	function AppendToValue(value) {
@@ -46,7 +45,7 @@ describe('Pipeline', function() {
 
 	it('should apply each filter in order added', function() {
 		var context = { value: 'one' };
-		new tamarack.Pipeline()
+		new Pipeline()
 			.add(new AppendToValue(', two'))
 			.add(new AppendToValue(', three'))
 			.executeSync(context);

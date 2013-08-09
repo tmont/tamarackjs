@@ -22,7 +22,7 @@ var simpleFilter = {
 ```
 
 ```javascript
-var Pipeline = require('tamarack').Pipeline;
+var Pipeline = require('tamarack');
 
 function createNewPost(post) {
 	var pipeline = new Pipeline()
