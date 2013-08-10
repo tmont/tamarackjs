@@ -19,10 +19,13 @@
 
 	"devDependencies": {
 		"mocha": "1.12.0",
-		"should": "1.2.2"
+		"should": "1.2.2",
+		"browserify": "2.26.0",
+		"uglify-js": "2.3.6"
 	},
 
 	"scripts": {
-		"test": "./node_modules/.bin/mocha -R spec tests"
+		"test": "./node_modules/.bin/mocha -R spec tests",
+		"build": "./node_modules/.bin/browserify -s tamarack -e index.js > tamarack.js && ./node_modules/.bin/uglifyjs tamarack.js > tamarack.min.js && rm tamarack.js"
 	}
 }

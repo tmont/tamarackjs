@@ -8,7 +8,11 @@ page. That's because the APIs are pretty much identical except for the case of t
 letter in the functions. And there's less angle brackets in the JavaScript version.
 
 ## Installation
-Node only at the moment: `npm install tamarack`
+### Node
+`npm install tamarack`
+
+###Browser
+Reference [tamarack.min.js](./tamarack.min.js) somewhere, and use `window.tamarack`.
 
 ## Usage
 You start with a `Pipeline`. `Pipeline`s contain filters. In the dynamic, non-type-safe
@@ -24,7 +28,7 @@ var simpleFilter = {
 ```
 
 ```javascript
-var Pipeline = require('tamarack');
+var Pipeline = require('tamarack').Pipeline;
 
 function createNewPost(post) {
 	var pipeline = new Pipeline()
@@ -107,3 +111,4 @@ npm install
 npm test
 ```
 
+Run `npm run build` to create the minified browser version of tamarack.

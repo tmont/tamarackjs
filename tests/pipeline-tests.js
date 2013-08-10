@@ -1,5 +1,5 @@
 var should = require('should'),
-	Pipeline = require('../');
+	Pipeline = require('../').Pipeline;
 
 describe('Pipeline', function() {
 	function AppendToValue(value) {

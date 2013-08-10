@@ -60,4 +60,4 @@ Pipeline.prototype = {
 	}
 };
 
-module.exports = Pipeline;
+exports.Pipeline = Pipeline;
