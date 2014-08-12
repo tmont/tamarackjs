@@ -2,7 +2,7 @@
 [![Build Status](https://travis-ci.org/tmont/tamarackjs.png)](https://travis-ci.org/tmont/tamarackjs)
 [![NPM version](https://badge.fury.io/js/tamarack.png)](http://badge.fury.io/js/tamarack)
 
-This is a NodeJS port of the similarly named [.NET framework](https://github.com/mikevalenty/tamarack),
+This is a NodeJS port of the similarly named [framework for .NET](https://github.com/mikevalenty/tamarack),
 written by Mike Valenty. The documentation on that page is more verbose than the stuff on this
 page. That's because the APIs are pretty much identical except for the case of the first
 letter in the functions. And there's less angle brackets in the JavaScript version.
