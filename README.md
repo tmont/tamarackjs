@@ -108,7 +108,9 @@ The result after executing the pipeline as above would be `Hello !world`.
 git clone git@github.com:tmont/tamarackjs.git
 cd tamarackjs
 npm install
-npm test
+node_modules/.bin/grunt test
 ```
 
-Run `npm run build` to create the minified browser version of tamarack.
+* Run `node_modules/.bin/grunt build` to create the minified browser version of tamarack.
+* Run `node_modules/.bin/grunt coverage` for code coverage.
+* Run `node_modules/.bin/grunt release` to prepare a release build.
