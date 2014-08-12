@@ -3,6 +3,10 @@ var chalk = require('chalk');
 module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
+		dirs: {
+			build: 'build',
+			test: 'tests'
+		},
 
 		browserify: {
 			web: {
@@ -10,23 +14,33 @@ module.exports = function(grunt) {
 					standalone: 'tamarack'
 				},
 				src: [ 'index.js' ],
-				dest: 'build/tamarack.js'
+				dest: '<%= dirs.build %>/tamarack.js'
 			}
 		},
 
 		uglify: {
 			web: {
-				src: [ 'build/tamarack.js' ],
-				dest: 'build/tamarack.min.js'
+				src: [ '<%= dirs.build %>/tamarack.js' ],
+				dest: '<%= dirs.build %>/tamarack.min.js'
 			}
 		},
 
-		mochaTest: {
+		mochacov: {
 			test: {
 				options: {
-					reporter: 'spec'
-				},
-				src: [ 'tests/*.js' ]
+					reporter: 'spec',
+					require: [ 'should' ]
+				}
+			},
+			coverage: {
+				options: {
+					reporter: 'html-cov',
+					require: [ 'should' ],
+					output: '<%= dirs.build %>/coverage.html'
+				}
+			},
+			options: {
+				files: '<%= dirs.test %>/*.js'
 			}
 		},
 
@@ -34,8 +48,8 @@ module.exports = function(grunt) {
 
 		copy: {
 			release: {
-				src: 'build/tamarack.min.js',
-				dest: './tamarack.min.js'
+				src: '<%= dirs.build %>/tamarack.min.js',
+				dest: 'tamarack.min.js'
 			}
 		}
 	});
@@ -43,10 +57,14 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
-	grunt.loadNpmTasks('grunt-mocha-test');
+	grunt.loadNpmTasks('grunt-mocha-cov');
 	grunt.loadNpmTasks('grunt-browserify');
 
-	grunt.registerTask('test', [ 'mochaTest:test' ]);
+	grunt.registerTask('test', [ 'mochacov:test' ]);
+	grunt.registerTask('coverage', 'Calculate test coverage', function() {
+		grunt.task.run('mochacov:coverage');
+		grunt.log.writeln('Results in ' + chalk.cyan(grunt.config.get('dirs.build') + '/coverage.html'));
+	});
 	grunt.registerTask('build', [ 'test', 'browserify:web', 'uglify:web' ]);
 	grunt.registerTask('default', [ 'build' ]);
 
