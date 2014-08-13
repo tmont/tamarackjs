@@ -12,7 +12,7 @@ letter in the functions. And there's less angle brackets in the JavaScript versi
 `npm install tamarack`
 
 ###Browser
-Reference [tamarack.min.js](./tamarack.min.js) somewhere, and use `window.tamarack`.
+Reference [tamarack.min.js](./tamarack.min.js) somewhere, and use `window.Pipeline`.
 
 ## Usage
 You start with a `Pipeline`. `Pipeline`s contain filters. In the dynamic, non-type-safe
