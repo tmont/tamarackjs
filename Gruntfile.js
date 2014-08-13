@@ -15,6 +15,10 @@ module.exports = function(grunt) {
 				},
 				src: [ 'index.js' ],
 				dest: '<%= dirs.build %>/tamarack.js'
+			},
+			browserTests: {
+				src: [ '<%= dirs.test %>/pipeline-tests.js' ],
+				dest: '<%= dirs.test %>/pipeline-tests_browser.js'
 			}
 		},
 
@@ -25,6 +29,7 @@ module.exports = function(grunt) {
 			}
 		},
 
+		// node tests
 		mochacov: {
 			test: {
 				options: {
@@ -40,7 +45,20 @@ module.exports = function(grunt) {
 				}
 			},
 			options: {
-				files: '<%= dirs.test %>/*.js'
+				files: '<%= dirs.test %>/pipeline-tests.js'
+			}
+		},
+
+		// browser tests
+		mocha: {
+			browser: {
+				src: [ '<%= dirs.test %>/pipeline-tests.html' ],
+				options: {
+					log: true,
+					logErrors: true,
+					reporter: 'Spec',
+					run: true
+				}
 			}
 		},
 
@@ -58,16 +76,16 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-copy');
 	grunt.loadNpmTasks('grunt-mocha-cov');
+	grunt.loadNpmTasks('grunt-mocha');
 	grunt.loadNpmTasks('grunt-browserify');
 
-	grunt.registerTask('test', [ 'mochacov:test' ]);
+	grunt.registerTask('test', [ 'browserify:browserTests', 'mochacov:test', 'mocha:browser' ]);
 	grunt.registerTask('coverage', 'Calculate test coverage', function() {
 		grunt.task.run('mochacov:coverage');
 		grunt.log.writeln('Results in ' + chalk.cyan(grunt.config.get('dirs.build') + '/coverage.html'));
 	});
 	grunt.registerTask('build', [ 'test', 'browserify:web', 'uglify:web' ]);
 	grunt.registerTask('default', [ 'build' ]);
-
 	grunt.registerTask('bump', 'Bump version number', function() {
 		var pkg = require('./package.json'),
 			oldVersion = pkg.version,
